@@ -1,0 +1,60 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %} Listar Usuarios {% endblock title %}
+{% block contenido %}
+
+<section>
+
+    <div>
+        <div class="row">
+            <div class="col-sm-1">
+
+            </div>
+            <div class="col-sm-10">
+                <div>
+                    <table class="table table-bordered" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>USERNAME</th>
+                                <th>NOMBRE</th>
+                                <th>APELLIDO</th>
+                                <th>CORREO</th>
+                                <th>FECHA INGRESO</th>
+                                <th>OPCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for aux in listarClientes %}
+                            <tr>
+                                <td>{{ aux.id }}</td>
+                                <input type="hidden" name="run" id="run" value="{{ aux.run }}">
+                                <td>{{ aux.username }}</td>
+                                <td>{{ aux.first_name }}</td>
+                                <td>{{ aux.last_name }}</td>
+                                <td>{{ aux.email }}</td>
+                                <td>{{ aux.date_joined }}</td>
+                                
+                                <td>    
+                                    <div class="" style="text-align: center;">
+                                        <a href="{% url 'modificar_usuarios' aux.id %}" class="btn btn-warning suavizado" style="width: 40px !important; margin-bottom: 5px; border-radius: 50% !important;"><i class="fa-solid fa-file-pen"></i></a>
+                                        <a style="border-radius: 50% !important;" class="btn btn-danger suavizado" onclick="confirmacionUser('{{ aux.id }}')"><i class="fa-solid fa-trash-can"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-1">
+
+            </div>
+        </div>
+    </div>
+    
+    </section>
+
+
+
+{% endblock %}

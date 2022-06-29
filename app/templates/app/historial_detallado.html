@@ -1,0 +1,95 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %} Historial Detallado {% endblock title %}
+{%block contenido%}
+<div class="row">
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-8"  style="display: flex; justify-content: center; align-items: center; flex-direction:column;">
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column">
+            <h1> Código compra: {{  carrito.cod_carr }}</h1>
+        </div>
+    
+        <hr>
+    
+        <div style=" display: flex; margin-bottom: 2%; justify-content: center !important; align-items: center !important;">
+            <style>
+                @media (max-width:994px) {
+    
+                    
+                    h4 {
+                        font-size: 1.3rem !important;
+                    }
+                }
+                @media (max-width:844px) {
+    
+                    
+                    h4 {
+                        font-size: 1.2rem !important;
+                    }
+
+                    h2 {
+                        font-size: 1.4rem !important;
+                    }
+                }
+            </style>
+            <table class="table reponsive-table" id="reponsive-table" style="margin: 0 auto; text-align: center; width: 100%;">
+                <thead>
+                <tr>
+                    <th>
+                        <h1>Producto(s)</h1>
+                    </th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="display: flex; flex-direction: row;">
+                        {% for aux in listaElementos %}
+    
+                        <div style="display: flex; justify-content: center; align-items: center; margin: 2% !important">
+                            <img src="{{  aux.producto.imagen.url }}" alt="" style="width: 100%; ">
+                        </div>
+                        
+                        {% endfor %}
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td style="display: flex; flex-direction: row;">
+                        {% for aux in listaElementos %}
+                        <h4 style=" margin: 0 auto">Cantidad : {{ aux.contador }}</h4>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="display: flex; flex-direction: row;">
+                        {% for aux in listaElementos %}
+                        <h4 style=" margin: 0 auto">Nombre : {{ aux.producto.nombre }}</h4>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+    
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    
+    
+        <hr>
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <h2> Código seguimiento: {{ seguimiento.cod_seguimiento  }}</h2>
+            <h2> Estado: {{ seguimiento.estado  }}</h2>
+        </div>
+    </div>
+    <div class="col-sm-2">
+    
+    </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %} Api Super Smash Bros {% endblock title %}
+{% block contenido %}
+
+<!--Colocar esto en listas con la etiqueta li encerrar el li en un ul-->
+
+<div style="text-align: center;">
+    <h1>Api Super Smash Bros</h1>
+</div>
+<div class="row">
+    {% for aux in listaSSB %} 
+    <div class="col-md-3">
+        <div class="card" style="margin: 4%;">
+            {% if aux.images.portrait %}
+            <img src="{{ aux.images.portrait }}" class="card-img-top" style="max-width: 431px; max-height: 431px">
+            {% else %}
+            <img src="{% static 'app/img/bambu.png' %}" class="card-img-top" style="max-width: 431px; max-height: 431px">
+            {% endif %}
+            
+            <div style="margin: 2.5%;">
+                <div class="" >
+                    <h5 class="tamanio-letra-prod" style="text-align: center;">Disponibilidad: {{ aux.availability }}</h5>
+                </div>
+                <div class="" >
+                    <h5 class="tamanio-letra-prod" style="text-align: center;">Nombre: {{ aux.name }}</h5>
+                </div>
+                <div class="" >
+                    <h5 class="tamanio-letra-prod" style="text-align: center;">Series: {{ aux.series.name }}</h5>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+
+    
+</div>
+{% endblock %}

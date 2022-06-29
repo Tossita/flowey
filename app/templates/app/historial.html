@@ -1,0 +1,76 @@
+
+<!--se agrega en el form enctype="multipart/form-data"-->
+{% extends 'app/base.html' %}
+
+{% load static %}
+{% block title %} Historial {% endblock title %}
+{%block contenido%}
+<section>
+
+<div>
+    
+    <div class="row">
+        
+        <div class="col-sm-12">
+            <div>
+                <table class="table table-bordered" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>NÚMERO SEGUIMIENTO</th>
+                            <th>NOMBRE USUARIO</th>
+                            <th>PRODUCTOS</th>
+                            <th>FECHA COMPRA</th>
+                            <th>ESTADO</th>
+                            <th>FECHA ACTUALIZACIÓN</th>
+                            <th>OPCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for aux in listarHistorial %}
+                        <tr >
+                            <td>{{ aux.seguimiento.cod_seguimiento }}</td>
+                            <input type="hidden" name="codigo" id="codigo" value="{{ aux.seguimiento.cod_seguimiento }}">
+                            <td >{{ aux.seguimiento.user.username }}</td>
+                            <td id='{{ aux.carrito.cod_carr }}'></td>
+                            <td>{{ aux.seguimiento.created_at }}</td>
+                            <td>{{ aux.seguimiento.estado }}</td>
+                            <td>{{ aux.seguimiento.updated_at }}</td>
+                            
+                            <td>    
+                                <div class="" style="text-align: center;">
+                                    <a href="{% url 'historial_detallado' aux.num_hist %}" class="btn btn-primary suavizado" style="width: 50px !important; height: 50px; margin-bottom: 5px; border-radius: 60% !important; padding-top: 12px;"><i class="fa-solid fa-magnifying-glass" style="padding-right: 10% !important; padding-top: 10%;"></i></a>  
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+</section>
+
+<script>
+    
+    var listaNomProd = [];
+    '{% for x in listaElementCarrito %}'
+    listaNomProd.push({nombre : '{{ x.producto.nombre }}', id : '{{ x.carrito.cod_carr }}'});
+    '{% endfor %}'
+    console.log(listaNomProd)
+    listaNomProd.forEach(elemento => { 
+        casillaProducto = document.getElementById(elemento.id);
+        para = document.createElement("p");
+        node = document.createTextNode(elemento.nombre);
+        para.appendChild(node);
+        casillaProducto.appendChild(para);
+    })
+     
+</script>
+{% endblock%}
